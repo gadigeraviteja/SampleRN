@@ -66,12 +66,12 @@ const MallsData = [
     },
     {
         id: "3",
-        title: "GSM Mall",
+        title: "AMB Mall",
         iconName: mall3,
     },
     {
         id: "4",
-        title: "AMB Mall",
+        title: "GSM Mall",
         iconName: mall4,
     },
     {
@@ -125,7 +125,7 @@ const CategoryItem = ({ title, iconName }) => {
         <View style={styles.categoryItem}>
             <View style={{ size: 100, flex: 0.8, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 20, backgroundColor: 'lightgray' }}>
                 <Image
-                    style={{ height: 60, width: 60 , margin:10}}
+                    style={{ height: 50, width: 50 , margin:15}}
                     source={iconName}
                 />
             </View>
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     },
 
     headerViewStyle: {
-        marginTop: 5,
+        marginTop: 10,
         padding: 5,
         height: 50,
         flexDirection: 'row',
