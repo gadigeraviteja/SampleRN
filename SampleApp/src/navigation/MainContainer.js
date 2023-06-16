@@ -28,16 +28,13 @@ function MainContainer() {
             let rn = route.name;
 
             if (rn === homeName) {
-              
               iconName = focused ? 'home' : 'home-outline';
-
             } else if (rn === profilesName) {
-              iconName = focused ? 'list' : 'list-outline';
-
+              iconName = focused ? 'person' : 'person-outline';
             } else if (rn === searchName) {
-              iconName = focused ? 'settings' : 'settings-outline';
+              iconName = focused ? 'search' : 'search-outline';
             } else if(rn === settingsName) {
-              iconName = focused ? 'settings' : 'settings-outline';
+              iconName = focused ? 'ios-grid' : 'ios-grid-outline';
             }
 
             // You can return any component that you like here!
@@ -45,10 +42,10 @@ function MainContainer() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: 'lightblue',
           inactiveTintColor: 'grey',
-          labelStyle: { paddingBottom: 10, fontSize: 10 },
-          style: { padding: 10, height: 70}
+          labelStyle: { fontSize: 10 },
+          style: { padding: 5, height: 100}
         }}>
 
         <Tab.Screen name={homeName} component={HomeScreen} />
