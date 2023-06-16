@@ -1,34 +1,27 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, FlatList, Image , ScrollView} from "react-native";
-import { ListItem, SearchBar } from "react-native-elements";
+import { StyleSheet, Text, View, FlatList, Image, ScrollView } from "react-native";
+import { SearchBar } from "react-native-elements";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { offerImage } from "../../assets/pngSources";
+import { offerImage1, offerImage2, offerImage3 } from "../../assets/pngSources";
+import { mall1, mall2, mall3, mall4, mall5 } from "../../assets/pngSources";
+import { brand1, brand2, brand3, brand4, brand5 } from "../../assets/pngSources";
+import { category1, category2, category3, category4, category5 } from "../../assets/pngSources";
 
 const OffersData = [
     {
         id: "1",
         title: "Offer1",
-        iconName: "ios-grid",
+        iconName: offerImage1,
     },
     {
         id: "2",
         title: "Offer2",
-        iconName: "ios-grid",
+        iconName: offerImage2,
     },
     {
         id: "3",
         title: "Offer3",
-        iconName: "ios-grid",
-    },
-    {
-        id: "4",
-        title: "Offer4",
-        iconName: "ios-grid",
-    },
-    {
-        id: "5",
-        title: "Offer5",
-        iconName: "ios-grid",
+        iconName: offerImage3,
     },
 ];
 
@@ -36,27 +29,27 @@ const CategorysData = [
     {
         id: "1",
         title: "Electronics",
-        iconName: "ios-grid",
+        iconName: category1,
     },
     {
         id: "2",
         title: "Clothing",
-        iconName: "ios-grid",
+        iconName: category2,
     },
     {
         id: "3",
         title: "FootWear",
-        iconName: "ios-grid",
+        iconName: category3,
     },
     {
         id: "4",
         title: "Furniture",
-        iconName: "ios-grid",
+        iconName: category4,
     },
     {
         id: "5",
         title: "Sports",
-        iconName: "ios-grid",
+        iconName: category5,
     },
 ];
 
@@ -64,76 +57,79 @@ const MallsData = [
     {
         id: "1",
         title: "Inorbit Mall",
-        iconName: "home",
+        iconName: mall1,
     },
     {
         id: "2",
         title: "Nexus Mall",
-        iconName: "home",
+        iconName: mall2,
     },
     {
         id: "3",
         title: "GSM Mall",
-        iconName: "home",
+        iconName: mall3,
     },
     {
         id: "4",
         title: "AMB Mall",
-        iconName: "home",
+        iconName: mall4,
     },
     {
         id: "5",
         title: "City Center Mall",
-        iconName: "home",
+        iconName: mall5,
     },
-]; 
+];
 
 const BrandsData = [
     {
         id: "1",
         title: "Apple Store",
-        iconName: "search",
+        iconName: brand1,
     },
     {
         id: "2",
         title: "Starbucks",
-        iconName: "search",
+        iconName: brand2,
     },
     {
         id: "3",
         title: "KFC",
-        iconName: "search",
+        iconName: brand3,
     },
     {
         id: "4",
         title: "Nike",
-        iconName: "search",
+        iconName: brand4,
     },
     {
         id: "5",
         title: "Sports",
-        iconName: "search",
+        iconName: brand5,
     },
 ];
 
-const OfferItem = ({ title }) => {
+const OfferItem = ({ title, iconName }) => {
     return (
         <View style={styles.offerItem}>
             <Image
-                style={{ height: 160, width: 320, borderRadius:10}}
-                source={ offerImage} 
+                style={{ height: 180, width: 320, borderRadius: 10 }}
+                source={iconName}
             />
         </View>
     );
 };
 
-const CategoryItem = ({ title , iconName}) => {
+const CategoryItem = ({ title, iconName }) => {
     return (
         <View style={styles.categoryItem}>
-            <View style={{ backgroundColor: 'lightgray', size: 100, flex: 0.6, alignContent: 'center', alignItems: 'center', flexDirection:'row', borderRadius:10}}>
-                <Ionicons name={iconName} color="#4F8EF7" size={40} style={{ alignContent: 'center', alignItems: 'center', margin:10}} />
+            <View style={{ size: 100, flex: 0.8, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 20, backgroundColor: 'lightgray' }}>
+                <Image
+                    style={{ height: 60, width: 60 , margin:10}}
+                    source={iconName}
+                />
             </View>
-            <Text style={{top:20}}>{title}</Text>
+            <Text style={{ top: 20 }}>{title}</Text>
         </View>
     );
 };
@@ -141,11 +137,14 @@ const CategoryItem = ({ title , iconName}) => {
 const MallItem = ({ title, iconName }) => {
     return (
         <View style={styles.mallItem}>
-            <View style={{ backgroundColor: 'lightgray',  flex: 1, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 10 }}>
-                <Ionicons name={iconName} color="#4F8EF7" size={120} style={{ alignContent: 'center', alignItems: 'center'}} />
+            <View style={{ backgroundColor: 'white', flex: 1, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 10 }}>
+                <Image
+                    style={{ height: 180, width: 135, borderRadius: 10 }}
+                    source={iconName}
+                />
             </View>
-            <Text style={{ top: 5, padding: 5 }}>{title}</Text>
-            <Text style={{ top: 5, padding:5 }}>{"HitechCity,Hyd"}</Text>
+            <Text style={{ top: 5, padding: 5, fontWeight: 'bold', }}>{title}</Text>
+            <Text style={{ top: 5, padding: 5 }}>{"HitechCity, Hyd"}</Text>
         </View>
     );
 };
@@ -153,8 +152,11 @@ const MallItem = ({ title, iconName }) => {
 const BrandItem = ({ title, iconName }) => {
     return (
         <View style={styles.brandItem}>
-            <View style={{ backgroundColor: 'lightgray', size: 100, flex: 0.6, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 10 }}>
-                <Ionicons name={iconName} color="#4F8EF7" size={40} style={{ alignContent: 'center', alignItems: 'center', margin: 10 }} />
+            <View style={{  size: 100, flex: 0.6, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 10 }}>
+                <Image
+                    style={{ height: 60, width: 60 }}
+                    source={iconName}
+                />
             </View>
             <Text style={{ top: 20 }}>{title}</Text>
         </View>
@@ -174,7 +176,7 @@ class HomeScreen extends Component {
             offersData: OffersData,
             categorysData: CategorysData,
             mallsData: MallsData,
-            brandsData : BrandsData,
+            brandsData: BrandsData,
             error: null,
             searchValue: "",
         };
@@ -193,63 +195,69 @@ class HomeScreen extends Component {
     render() {
         return (
             <ScrollView>
-            <View style={styles.container}>
-                <SearchBar
-                    placeholder="Search Here..."
-                    lightTheme
-                    round
-                    value={this.state.searchValue}
-                    onChangeText={(text) => this.searchFunction(text)}
-                    autoCorrect={false}
-                />
+                <View style={styles.container}>
+                    <SearchBar style={{ margin: 10 }}
+                        inputStyle={{ backgroundColor: 'white', borderColor: 'black', borderWidth: 1, borderRadius: 20 }}
+                        containerStyle={{ backgroundColor: 'white', }}
+                        inputContainerStyle={{ backgroundColor: 'white',  }}
+                        placeholder=" Search for malls"
+                        lightTheme
+                        round
+                        value={this.state.searchValue}
+                        onChangeText={(text) => this.searchFunction(text)}
+                        autoCorrect={false}
+                    />
 
-                <FlatList
-                    horizontal
-                    data={this.state.offersData}
-                    renderItem={offerRenderItem}
-                    keyExtractor={(item) => item.id}
-                />
-
-                <View>
-                    <View style={styles.headerViewStyle}>
-                            <Text style={ {flex:0.9 , paddingStart:10,}}>Categories</Text>
-                            <Ionicons name={'chevron-forward'} color="gray" size={25}  />
-                    </View>
                     <FlatList
                         horizontal
-                        data={this.state.categorysData}
-                        renderItem={categoryRenderItem}
+                        showsHorizontalScrollIndicator='false'
+                        data={this.state.offersData}
+                        renderItem={offerRenderItem}
                         keyExtractor={(item) => item.id}
                     />
-                </View>
-
-                <View >
-                    <View style={styles.headerViewStyle}>
-                            <Text style={{ flex: 0.9, paddingStart: 10, }}>Malls near to you</Text>
-                            <Ionicons name={'chevron-forward'} color="gray" size={25} />
-                    </View>
-                    <FlatList
-                        horizontal
-                        data={this.state.mallsData}
-                        renderItem={mallRenderItem}
-                        keyExtractor={(item) => item.id}
-                    />
-                </View>
 
                     <View>
                         <View style={styles.headerViewStyle}>
-                            <Text style={{ flex: 0.9, paddingStart: 10, }}>Go with brands</Text>
+                            <Text style={{ flex: 0.95, paddingStart: 10, fontWeight: 'bold', }}>Categories</Text>
                             <Ionicons name={'chevron-forward'} color="gray" size={25} />
                         </View>
                         <FlatList
                             horizontal
+                            showsHorizontalScrollIndicator='false'
+                            data={this.state.categorysData}
+                            renderItem={categoryRenderItem}
+                            keyExtractor={(item) => item.id}
+                        />
+                    </View>
+
+                    <View >
+                        <View style={styles.headerViewStyle}>
+                            <Text style={{ flex: 0.95, paddingStart: 10, fontWeight: 'bold', }}>Malls near to you</Text>
+                            <Ionicons name={'chevron-forward'} color="gray" size={25} />
+                        </View>
+                        <FlatList
+                            showsHorizontalScrollIndicator = 'false'
+                            horizontal
+                            data={this.state.mallsData}
+                            renderItem={mallRenderItem}
+                            keyExtractor={(item) => item.id}
+                        />
+                    </View>
+
+                    <View>
+                        <View style={styles.headerViewStyle}>
+                            <Text style={{ flex: 0.95, paddingStart: 10, fontWeight: 'bold', }}>Go with brands</Text>
+                            <Ionicons name={'chevron-forward'} color="gray" size={25} />
+                        </View>
+                        <FlatList
+                            horizontal
+                            showsHorizontalScrollIndicator='false'
                             data={this.state.brandsData}
                             renderItem={brandRenderItem}
                             keyExtractor={(item) => item.id}
                         />
                     </View>
-             
-            </View>
+                </View>
             </ScrollView>
         );
     }
@@ -260,26 +268,27 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         marginTop: 0,
-        padding: 2,
+        padding: 5,
+        backgroundColor:'white'
     },
 
     headerViewStyle: {
         marginTop: 5,
         padding: 5,
         height: 50,
-        flexDirection:'row',
+        flexDirection: 'row',
         alignContent: 'center',
         alignItems: 'center',
-        backgroundColor:'white'
+        backgroundColor: 'white'
     },
 
     offerItem: {
-        padding: 20,
-        width: 320 ,
-        height: 180 ,
+        padding: 10,
+        width: 320,
+        height: 180,
         marginVertical: 10,
-        marginHorizontal: 10,
-        borderRadius :10
+        marginHorizontal: 5,
+        borderRadius: 10
     },
 
     categoryItem: {
@@ -295,8 +304,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         padding: 10,
         width: 150,
-        height: 200,
-        marginHorizontal: 1,
+        height: 250,
         flexDirection: 'column',
         alignContent: 'center',
         alignItems: 'center',
