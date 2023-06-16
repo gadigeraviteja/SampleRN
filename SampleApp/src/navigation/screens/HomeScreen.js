@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, FlatList, Image , ScrollView} from "react-native";
 import { ListItem, SearchBar } from "react-native-elements";
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { offerImage } from "../../assets/pngSources";
 
 const OffersData = [
     {
@@ -62,27 +63,27 @@ const CategorysData = [
 const MallsData = [
     {
         id: "1",
-        title: "Electronics",
+        title: "Inorbit Mall",
         iconName: "home",
     },
     {
         id: "2",
-        title: "Clothing",
+        title: "Nexus Mall",
         iconName: "home",
     },
     {
         id: "3",
-        title: "FootWear",
+        title: "GSM Mall",
         iconName: "home",
     },
     {
         id: "4",
-        title: "Furniture",
+        title: "AMB Mall",
         iconName: "home",
     },
     {
         id: "5",
-        title: "Sports",
+        title: "City Center Mall",
         iconName: "home",
     },
 ]; 
@@ -90,22 +91,22 @@ const MallsData = [
 const BrandsData = [
     {
         id: "1",
-        title: "Electronics",
+        title: "Apple Store",
         iconName: "search",
     },
     {
         id: "2",
-        title: "Clothing",
+        title: "Starbucks",
         iconName: "search",
     },
     {
         id: "3",
-        title: "FootWear",
+        title: "KFC",
         iconName: "search",
     },
     {
         id: "4",
-        title: "Furniture",
+        title: "Nike",
         iconName: "search",
     },
     {
@@ -118,7 +119,10 @@ const BrandsData = [
 const OfferItem = ({ title }) => {
     return (
         <View style={styles.offerItem}>
-            <Text>{title}</Text>
+            <Image
+                style={{ height: 160, width: 320, borderRadius:10}}
+                source={ offerImage} 
+            />
         </View>
     );
 };
@@ -126,7 +130,9 @@ const OfferItem = ({ title }) => {
 const CategoryItem = ({ title , iconName}) => {
     return (
         <View style={styles.categoryItem}>
-            <Ionicons name={iconName} color="#4F8EF7" size={50} style={{ alignContent:'center' , alignItems:'center'}} />
+            <View style={{ backgroundColor: 'lightgray', size: 100, flex: 0.6, alignContent: 'center', alignItems: 'center', flexDirection:'row', borderRadius:10}}>
+                <Ionicons name={iconName} color="#4F8EF7" size={40} style={{ alignContent: 'center', alignItems: 'center', margin:10}} />
+            </View>
             <Text style={{top:20}}>{title}</Text>
         </View>
     );
@@ -135,16 +141,21 @@ const CategoryItem = ({ title , iconName}) => {
 const MallItem = ({ title, iconName }) => {
     return (
         <View style={styles.mallItem}>
-            <Ionicons name={iconName} color="#4F8EF7" size={50} style={{ alignContent: 'center', alignItems: 'center' }} />
-            <Text style={{ top: 20 }}>{title}</Text>
+            <View style={{ backgroundColor: 'lightgray',  flex: 1, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 10 }}>
+                <Ionicons name={iconName} color="#4F8EF7" size={120} style={{ alignContent: 'center', alignItems: 'center'}} />
+            </View>
+            <Text style={{ top: 5, padding: 5 }}>{title}</Text>
+            <Text style={{ top: 5, padding:5 }}>{"HitechCity,Hyd"}</Text>
         </View>
     );
 };
 
-const BranItem = ({ title, iconName }) => {
+const BrandItem = ({ title, iconName }) => {
     return (
-        <View style={styles.branItem}>
-            <Ionicons name={iconName} color="#4F8EF7" size={50} style={{ alignContent: 'center', alignItems: 'center' }} />
+        <View style={styles.brandItem}>
+            <View style={{ backgroundColor: 'lightgray', size: 100, flex: 0.6, alignContent: 'center', alignItems: 'center', flexDirection: 'row', borderRadius: 10 }}>
+                <Ionicons name={iconName} color="#4F8EF7" size={40} style={{ alignContent: 'center', alignItems: 'center', margin: 10 }} />
+            </View>
             <Text style={{ top: 20 }}>{title}</Text>
         </View>
     );
@@ -153,7 +164,7 @@ const BranItem = ({ title, iconName }) => {
 const offerRenderItem = ({ item }) => <OfferItem title={item.title} iconName={item.iconName} />;
 const categoryRenderItem = ({ item }) => <CategoryItem title={item.title} iconName={item.iconName} />;
 const mallRenderItem = ({ item }) => <MallItem title={item.title} iconName={item.iconName} />;
-const brandRenderItem = ({ item }) => <BranItem title={item.title} iconName={item.iconName} />;
+const brandRenderItem = ({ item }) => <BrandItem title={item.title} iconName={item.iconName} />;
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -199,10 +210,10 @@ class HomeScreen extends Component {
                     keyExtractor={(item) => item.id}
                 />
 
-                <View >
+                <View>
                     <View style={styles.headerViewStyle}>
-                        <Text>Categories</Text>
-                            <Ionicons name={'chevron-forward'} color="#4F8EF7" size={25}  />
+                            <Text style={ {flex:0.9 , paddingStart:10,}}>Categories</Text>
+                            <Ionicons name={'chevron-forward'} color="gray" size={25}  />
                     </View>
                     <FlatList
                         horizontal
@@ -214,8 +225,8 @@ class HomeScreen extends Component {
 
                 <View >
                     <View style={styles.headerViewStyle}>
-                        <Text>Malls near to you</Text>
-                            <Ionicons name={'chevron-forward'} color="#4F8EF7" size={25} />
+                            <Text style={{ flex: 0.9, paddingStart: 10, }}>Malls near to you</Text>
+                            <Ionicons name={'chevron-forward'} color="gray" size={25} />
                     </View>
                     <FlatList
                         horizontal
@@ -225,18 +236,19 @@ class HomeScreen extends Component {
                     />
                 </View>
 
-                <View >
-                    <View style={styles.headerViewStyle}>
-                        <Text>Go with brands</Text>
-                            <Ionicons name={'chevron-forward'} color="#4F8EF7" size={25} />
+                    <View>
+                        <View style={styles.headerViewStyle}>
+                            <Text style={{ flex: 0.9, paddingStart: 10, }}>Go with brands</Text>
+                            <Ionicons name={'chevron-forward'} color="gray" size={25} />
+                        </View>
+                        <FlatList
+                            horizontal
+                            data={this.state.brandsData}
+                            renderItem={brandRenderItem}
+                            keyExtractor={(item) => item.id}
+                        />
                     </View>
-                    <FlatList
-                        horizontal
-                        data={this.state.brandsData}
-                        renderItem={brandRenderItem}
-                        keyExtractor={(item) => item.id}
-                    />
-                </View>
+             
             </View>
             </ScrollView>
         );
@@ -258,11 +270,10 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignContent: 'center',
         alignItems: 'center',
-        backgroundColor:'lightgray'
+        backgroundColor:'white'
     },
 
     offerItem: {
-        backgroundColor: 'gray',
         padding: 20,
         width: 320 ,
         height: 180 ,
@@ -272,39 +283,29 @@ const styles = StyleSheet.create({
     },
 
     categoryItem: {
-        backgroundColor: 'lightgray',
-        padding: 10,
+        backgroundColor: 'white',
         width: 100,
         height: 120,
-        marginVertical: 10,
-        marginHorizontal: 10,
-        borderRadius: 10,
         flexDirection: 'column',
         alignContent: 'center',
         alignItems: 'center',
     },
 
     mallItem: {
-        backgroundColor: 'red',
+        backgroundColor: 'white',
         padding: 10,
-        width: 120,
-        height: 180,
-        marginVertical: 10,
-        marginHorizontal: 10,
-        borderRadius: 10,
+        width: 150,
+        height: 200,
+        marginHorizontal: 1,
         flexDirection: 'column',
         alignContent: 'center',
         alignItems: 'center',
     },
 
-    branItem: {
-        backgroundColor: 'lightblue',
-        padding: 10,
+    brandItem: {
+        backgroundColor: 'white',
         width: 100,
-        height: 100,
-        marginVertical: 10,
-        marginHorizontal: 10,
-        borderRadius: 10,
+        height: 120,
         flexDirection: 'column',
         alignContent: 'center',
         alignItems: 'center',
